@@ -115,6 +115,7 @@ let upStatus = 0
 let downStatus = 0
 let tankImages: Image[] = []
 let tank: Sprite = null
+// EXTENTION: https://github.com/jwunderl/arcade-tilemap-a-star 
 scene.setBackgroundColor(1)
 tank = sprites.create(img`
     ................................................................
