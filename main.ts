@@ -115,7 +115,7 @@ let upStatus = 0
 let downStatus = 0
 let tankImages: Image[] = []
 let tank: Sprite = null
-// EXTENTION: https://github.com/jwunderl/arcade-tilemap-a-star 
+// EXTENTION: https://github.com/jwunderl/arcade-tilemap-a-star
 scene.setBackgroundColor(1)
 tank = sprites.create(img`
     ................................................................
@@ -356,3 +356,4 @@ img`
     `
 ]
 tiles.setCurrentTilemap(tilemap`level1`)
+enemyNumber(game.askForNumber("Number of Enemies?", 2))
