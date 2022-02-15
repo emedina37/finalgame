@@ -2,7 +2,8 @@
     "name": "FinalGame",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "arcade-tilemap-a-star": "github:jwunderl/arcade-tilemap-a-star#v0.3.5"
     },
     "files": [
         "main.blocks",
