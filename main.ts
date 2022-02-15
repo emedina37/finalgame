@@ -290,3 +290,4 @@ img`
     .............................ff.................
     `
 ]
+tiles.setCurrentTilemap(tilemap`level1`)
