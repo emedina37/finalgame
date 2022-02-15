@@ -148,6 +148,7 @@ tank = sprites.create(img`
     ................................................................
     `, SpriteKind.Player)
 controller.moveSprite(tank)
+scene.cameraFollowSprite(tank)
 tankImages = [
 img`
     ................................................................
@@ -350,3 +351,4 @@ img`
     .............................ff.................
     `
 ]
+tiles.setCurrentTilemap(tilemap`level1`)
