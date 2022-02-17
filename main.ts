@@ -91,7 +91,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     leftStatus = 1
     rightStatus = 0
 })
-function enemyNumber (num: number) {
+function setDifficulty (chosenDifficulty: string) {
 	
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -117,6 +117,8 @@ let tankImages: Image[] = []
 let tank: Sprite = null
 // EXTENTION: https://github.com/jwunderl/arcade-tilemap-a-star
 scene.setBackgroundColor(1)
+let difficultyTypes = ["Easy", "Normal", "Hard"]
+setDifficulty(game.askForString("Choose a difficulty of Hard, Normal, or Easy!", 6))
 tank = sprites.create(img`
     ................................................................
     ................................................................
@@ -355,5 +357,3 @@ img`
     .............................ff.................
     `
 ]
-tiles.setCurrentTilemap(tilemap`level1`)
-enemyNumber(game.askForNumber("Number of Enemies?", 2))
