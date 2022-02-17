@@ -1,3 +1,6 @@
+function hardDifficulty () {
+	
+}
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     tank.setImage(tankImages[2])
     downStatus = 0
@@ -92,7 +95,20 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     rightStatus = 0
 })
 function setDifficulty (chosenDifficulty: string) {
-	
+    for (let index = 0; index <= difficultyTypes.length - 1; index++) {
+        if (chosenDifficulty.charAt(0) == difficultyTypes[0] || chosenDifficulty.charAt(0) == difficultyTypes[1]) {
+            tiles.setCurrentTilemap(tilemap`level1`)
+            break;
+        } else if (chosenDifficulty.charAt(0) == difficultyTypes[2] || chosenDifficulty.charAt(0) == difficultyTypes[3]) {
+            tiles.setCurrentTilemap(tilemap`level1`)
+            break;
+        } else if (chosenDifficulty.charAt(0) == difficultyTypes[4] || chosenDifficulty.charAt(0) == difficultyTypes[5]) {
+            tiles.setCurrentTilemap(tilemap`level1`)
+            break;
+        } else {
+            game.reset()
+        }
+    }
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     tank.setImage(tankImages[0])
@@ -101,6 +117,9 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     leftStatus = 0
     rightStatus = 1
 })
+function normalDifficulty () {
+	
+}
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     tank.setImage(tankImages[3])
     downStatus = 1
@@ -108,6 +127,9 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     leftStatus = 0
     rightStatus = 0
 })
+function easyDifficulty () {
+	
+}
 let projectile: Sprite = null
 let rightStatus = 0
 let leftStatus = 0
@@ -115,9 +137,17 @@ let upStatus = 0
 let downStatus = 0
 let tankImages: Image[] = []
 let tank: Sprite = null
+let difficultyTypes: string[] = []
 // EXTENTION: https://github.com/jwunderl/arcade-tilemap-a-star
 scene.setBackgroundColor(1)
-let difficultyTypes = ["Easy", "Normal", "Hard"]
+difficultyTypes = [
+"E",
+"e",
+"N",
+"n",
+"H",
+"h"
+]
 setDifficulty(game.askForString("Choose a difficulty of Hard, Normal, or Easy!", 6))
 tank = sprites.create(img`
     ................................................................
