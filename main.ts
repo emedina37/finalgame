@@ -2,7 +2,7 @@ function hardDifficulty () {
 	
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    tank.setImage(tankImages[2])
+    goodTank.setImage(tankImages[2])
     downStatus = 0
     upStatus = 1
     leftStatus = 0
@@ -27,7 +27,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             ................................................................
             ................................................................
             ................................................................
-            `, tank, 800, 0)
+            `, goodTank, 800, 0)
     } else if (leftStatus == 1) {
         projectile = sprites.createProjectileFromSprite(img`
             ................................................................
@@ -46,7 +46,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             ................................................................
             ................................................................
             ................................................................
-            `, tank, -800, 0)
+            `, goodTank, -800, 0)
     } else if (upStatus == 1) {
         projectile = sprites.createProjectileFromSprite(img`
             ......................................f.........................
@@ -65,7 +65,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             ................................................................
             ................................................................
             ................................................................
-            `, tank, 0, -800)
+            `, goodTank, 0, -800)
     } else if (downStatus == 1) {
         projectile = sprites.createProjectileFromSprite(img`
             ................................................................
@@ -84,11 +84,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             ......................................f.........................
             ......................................f.........................
             ......................................f.........................
-            `, tank, 0, 800)
+            `, goodTank, 0, 800)
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    tank.setImage(tankImages[1])
+    goodTank.setImage(tankImages[1])
     downStatus = 0
     upStatus = 0
     leftStatus = 1
@@ -97,13 +97,13 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 function setDifficulty (chosenDifficulty: string) {
     for (let index = 0; index <= difficultyTypes.length - 1; index++) {
         if (chosenDifficulty.charAt(0) == difficultyTypes[0] || chosenDifficulty.charAt(0) == difficultyTypes[1]) {
-            tiles.setCurrentTilemap(tilemap`level1`)
+            easyDifficulty()
             break;
         } else if (chosenDifficulty.charAt(0) == difficultyTypes[2] || chosenDifficulty.charAt(0) == difficultyTypes[3]) {
-            tiles.setCurrentTilemap(tilemap`level1`)
+            normalDifficulty()
             break;
         } else if (chosenDifficulty.charAt(0) == difficultyTypes[4] || chosenDifficulty.charAt(0) == difficultyTypes[5]) {
-            tiles.setCurrentTilemap(tilemap`level1`)
+            hardDifficulty()
             break;
         } else {
             game.reset()
@@ -111,7 +111,7 @@ function setDifficulty (chosenDifficulty: string) {
     }
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    tank.setImage(tankImages[0])
+    goodTank.setImage(tankImages[0])
     downStatus = 0
     upStatus = 0
     leftStatus = 0
@@ -121,7 +121,7 @@ function normalDifficulty () {
 	
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    tank.setImage(tankImages[3])
+    goodTank.setImage(tankImages[3])
     downStatus = 1
     upStatus = 0
     leftStatus = 0
@@ -136,7 +136,7 @@ let leftStatus = 0
 let upStatus = 0
 let downStatus = 0
 let tankImages: Image[] = []
-let tank: Sprite = null
+let goodTank: Sprite = null
 let difficultyTypes: string[] = []
 // EXTENTION: https://github.com/jwunderl/arcade-tilemap-a-star
 scene.setBackgroundColor(1)
@@ -149,7 +149,7 @@ difficultyTypes = [
 "h"
 ]
 setDifficulty(game.askForString("Choose a difficulty of Hard, Normal, or Easy!", 6))
-tank = sprites.create(img`
+goodTank = sprites.create(img`
     ................................................................
     ................................................................
     ................................................................
@@ -183,8 +183,8 @@ tank = sprites.create(img`
     ................................................................
     ................................................................
     `, SpriteKind.Player)
-controller.moveSprite(tank)
-scene.cameraFollowSprite(tank)
+controller.moveSprite(goodTank)
+scene.cameraFollowSprite(goodTank)
 tankImages = [
 img`
     ................................................................
