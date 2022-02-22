@@ -3,7 +3,7 @@ function hardDifficulty () {
     tiles.setCurrentTilemap(tilemap`hardMap`)
     for (let index = 0; index < 15; index++) {
         badTank = sprites.create(assets.image`badTankRIght`, SpriteKind.Enemy)
-        badTank.setPosition(randint(80, 800), randint(80, 800))
+        badTank.setPosition(randint(80, 700), randint(80, 700))
         badTank.setBounceOnWall(true)
         badTank.setVelocity(randint(-50, 50), randint(-50, 50))
     }
@@ -57,15 +57,19 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 function setDifficulty (chosenDifficulty: string) {
     for (let index = 0; index <= difficultyTypes.length - 1; index++) {
         if (chosenDifficulty.charAt(0) == difficultyTypes[0] || chosenDifficulty.charAt(0) == difficultyTypes[1]) {
+            difficultySet = 0
             easyDifficulty()
             break;
         } else if (chosenDifficulty.charAt(0) == difficultyTypes[2] || chosenDifficulty.charAt(0) == difficultyTypes[3]) {
+            difficultySet = 1
             normalDifficulty()
             break;
         } else if (chosenDifficulty.charAt(0) == difficultyTypes[4] || chosenDifficulty.charAt(0) == difficultyTypes[5]) {
+            difficultySet = 2
             hardDifficulty()
             break;
         } else {
+            game.splash("Please select a valid difficulty.")
             game.reset()
         }
     }
@@ -98,16 +102,28 @@ function easyDifficulty () {
         badTank.setVelocity(randint(-50, 50), randint(-50, 50))
     }
 }
+function scoreChecker () {
+    if (difficultySet == 0 && info.score() == 5) {
+        game.over(true, effects.confetti)
+    } else if (difficultySet == 1 && info.score() == 10) {
+        game.over(true, effects.confetti)
+    } else if (difficultySet == 2 && info.score() == 15) {
+        game.over(true, effects.confetti)
+    }
+}
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     goodShot.destroy()
     otherSprite.destroy(effects.fire, 500)
     info.changeScoreBy(1)
+    scoreChecker()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeScoreBy(1)
     info.changeLifeBy(-1)
     otherSprite.destroy(effects.fire, 500)
+    scoreChecker()
 })
+let difficultySet = 0
 let goodShot: Sprite = null
 let leftStatus = 0
 let rightStatus = 0
