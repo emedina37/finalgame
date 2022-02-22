@@ -28,6 +28,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             ................................................................
             ................................................................
             `, goodTank, 800, 0)
+        pause(500)
     } else if (leftStatus == 1) {
         goodShot = sprites.createProjectileFromSprite(img`
             ................................................................
@@ -47,6 +48,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             ................................................................
             ................................................................
             `, goodTank, -800, 0)
+        pause(500)
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -131,7 +133,6 @@ let badTank: Sprite = null
 let tankImages: Image[] = []
 let goodTank: Sprite = null
 let difficultyTypes: string[] = []
-// EXTENTION: https://github.com/jwunderl/arcade-tilemap-a-star
 scene.setBackgroundColor(1)
 difficultyTypes = [
 "E",
