@@ -3,7 +3,7 @@ function hardDifficulty () {
     tiles.setCurrentTilemap(tilemap`hardMap`)
     for (let index = 0; index < 15; index++) {
         badTank = sprites.create(assets.image`badTankRIght`, SpriteKind.Enemy)
-        badTank.setPosition(randint(40, 400), randint(40, 300))
+        badTank.setPosition(randint(80, 800), randint(80, 800))
         badTank.setBounceOnWall(true)
         badTank.setVelocity(randint(-50, 50), randint(-50, 50))
     }
@@ -80,7 +80,7 @@ function normalDifficulty () {
     tiles.setCurrentTilemap(tilemap`normalMap`)
     for (let index = 0; index < 10; index++) {
         badTank = sprites.create(assets.image`badTankRIght`, SpriteKind.Enemy)
-        badTank.setPosition(randint(40, 400), randint(40, 300))
+        badTank.setPosition(randint(60, 600), randint(60, 450))
         badTank.setBounceOnWall(true)
         badTank.setVelocity(randint(-50, 50), randint(-50, 50))
     }
@@ -104,6 +104,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
     info.changeLifeBy(-1)
     otherSprite.destroy(effects.fire, 500)
 })
