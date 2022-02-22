@@ -1,3 +1,4 @@
+// Is called by the setDifficulty function, creates the "hard" gamemode.
 function hardDifficulty () {
     info.setLife(3)
     tiles.setCurrentTilemap(tilemap`hardMap`)
@@ -51,11 +52,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         pause(500)
     }
 })
+// Changes Sprite to the "left image" when left is pressed, and helps with the orientation of projectiles.
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     goodTank.setImage(tankImages[1])
     leftStatus = 1
     rightStatus = 0
 })
+// Function setDifficulty is made to evaluate user input for the prompt to select a difficulty and then accordingly creates a tilemap and number of enemies for that selected difficulty.
 function setDifficulty (chosenDifficulty: string) {
     for (let index = 0; index <= difficultyTypes.length - 1; index++) {
         if (chosenDifficulty.charAt(0) == difficultyTypes[0] || chosenDifficulty.charAt(0) == difficultyTypes[1]) {
@@ -76,11 +79,13 @@ function setDifficulty (chosenDifficulty: string) {
         }
     }
 }
+// Changes Sprite to the "right image" when right is pressed, and helps with the orientation of projectiles.
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     goodTank.setImage(tankImages[0])
     leftStatus = 0
     rightStatus = 1
 })
+// Is called by the setDifficulty function, creates the "normal" gamemode.
 function normalDifficulty () {
     info.setLife(2)
     tiles.setCurrentTilemap(tilemap`normalMap`)
@@ -94,6 +99,7 @@ function normalDifficulty () {
 info.onLifeZero(function () {
     game.over(false, effects.dissolve)
 })
+// Is called by the setDifficulty function, creates the "easy" gamemode.
 function easyDifficulty () {
     info.setLife(1)
     tiles.setCurrentTilemap(tilemap`easyMap`)
@@ -104,6 +110,7 @@ function easyDifficulty () {
         badTank.setVelocity(randint(-50, 50), randint(-50, 50))
     }
 }
+// Function scoreChecker is called upon when a sprite of the kind enemy is destroyed by collision with a player's projectile or player's sprite. The function determines if the maximum score has been reached and then accordingly allows the game to continue or ends the game with a win when the max score is reached.
 function scoreChecker () {
     if (difficultySet == 0 && info.score() == 5) {
         game.over(true, effects.confetti)
@@ -125,6 +132,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     otherSprite.destroy(effects.fire, 500)
     scoreChecker()
 })
+// This program should entertain a user by allowing them to play as a tank and destroy enemy sprites. The game should take the user's input for a difficulty and accordingly create a tilemap and number of sprites for the selected difficulty. The game will be able to determine if a user wins or loses based on whether they lose all their lives or destroy all enemy sprites.
 let difficultySet = 0
 let goodShot: Sprite = null
 let leftStatus = 0
