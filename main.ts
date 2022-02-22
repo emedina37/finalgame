@@ -1,6 +1,6 @@
 function hardDifficulty () {
     info.setLife(3)
-    tiles.setCurrentTilemap(tilemap`level1`)
+    tiles.setCurrentTilemap(tilemap`hardMap`)
     for (let index = 0; index < 15; index++) {
         badTank = sprites.create(assets.image`badTankRIght`, SpriteKind.Enemy)
         badTank.setPosition(randint(40, 400), randint(40, 300))
@@ -77,7 +77,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function normalDifficulty () {
     info.setLife(2)
-    tiles.setCurrentTilemap(tilemap`level1`)
+    tiles.setCurrentTilemap(tilemap`normalMap`)
     for (let index = 0; index < 10; index++) {
         badTank = sprites.create(assets.image`badTankRIght`, SpriteKind.Enemy)
         badTank.setPosition(randint(40, 400), randint(40, 300))
@@ -90,7 +90,7 @@ info.onLifeZero(function () {
 })
 function easyDifficulty () {
     info.setLife(1)
-    tiles.setCurrentTilemap(tilemap`level1`)
+    tiles.setCurrentTilemap(tilemap`easyMap`)
     for (let index = 0; index < 5; index++) {
         badTank = sprites.create(assets.image`badTankRIght`, SpriteKind.Enemy)
         badTank.setPosition(randint(40, 400), randint(40, 300))
